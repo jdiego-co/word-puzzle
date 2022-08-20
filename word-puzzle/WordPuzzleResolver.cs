@@ -124,15 +124,29 @@ namespace word_puzzle
 
             isValid = isValid && currentCharacter == totalCharacters;
 
+            var EndPosition = new Coordinate
+            {
+                X = x + 1,
+                Y = y + 1
+            };
+
+            if (displacementCoordinates.X > 0)
+                EndPosition.X = EndPosition.X - 1;
+
+            if (displacementCoordinates.X < 0)
+                EndPosition.X = EndPosition.X + 1;
+
+            if (displacementCoordinates.Y > 0)
+                EndPosition.Y = EndPosition.Y - 1;
+
+            if (displacementCoordinates.Y < 0)
+                EndPosition.Y = EndPosition.Y + 1;
+
             var result = new WordSearchResult
             {
                 Found = isValid,
                 StartPosition = startCoordinates,
-                EndPosition = new Coordinate
-                {
-                    X = x + 1 + (displacementCoordinates.X * displacementCoordinates.X),
-                    Y = y + 1 + (displacementCoordinates.Y * displacementCoordinates.Y)
-                }
+                EndPosition = EndPosition
             };
 
             return result;
