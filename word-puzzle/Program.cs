@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace word_puzzle
 {
@@ -6,7 +7,14 @@ namespace word_puzzle
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string fileRead = string.Empty;
+            FileStream fileStream = new FileStream("wordpuzzle.txt", FileMode.OpenOrCreate);
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                fileRead = reader.ReadToEnd();
+            }
+            var puzzle = new WordPuzzle(fileRead);
+
         }
     }
 }
