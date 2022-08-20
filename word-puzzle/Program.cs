@@ -8,12 +8,14 @@ namespace word_puzzle
         static void Main(string[] args)
         {
             string fileRead = string.Empty;
-            FileStream fileStream = new FileStream("wordpuzzle.txt", FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream("wordpuzzle.txt", FileMode.Open);
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 fileRead = reader.ReadToEnd();
             }
-            var puzzle = new WordPuzzle(fileRead);
+            var puzzle = new WordPuzzleResolver(fileRead);
+            puzzle.Print();
+            Console.ReadLine();
 
         }
     }
